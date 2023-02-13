@@ -15,19 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from api.views import MenuItemDisplay,Manageusers,Manageusersrud,ManageDelivery,Managedeliveryrud,managecart,managerdcart,orderView,orderviewrud
+from api.views import MenuItemDisplay,Manageusers,Manageusersrud,ManageDelivery,Managedeliveryrud,managecart,orderView,orderviewrud,MenuItemurd,managerdcartrud
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('api/menu-items',MenuItemDisplay.as_view()),
-    path('api/menu-items/<int:id>',MenuItemDisplay.as_view()),
+    path('api/menu-items/<int:pk>',MenuItemurd.as_view()),
     path('api/manager/users',Manageusers.as_view()),
     path('api/manager/users/<int:pk>',Manageusersrud.as_view()),
     path('api/delivery/users',ManageDelivery.as_view()),
     path('api/delivery/users/<int:pk>',Managedeliveryrud.as_view()),
     path('api/cart/menu-items',managecart.as_view()),
-    path('api/cart/menu-items/<int:pk>',managerdcart.as_view()),
+    path('api/cart/menu-items/<int:pk>',managerdcartrud.as_view()),
     path('api/order',orderView.as_view()),
     path('api/order/<int:pk>',orderviewrud.as_view())
 

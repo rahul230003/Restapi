@@ -98,7 +98,10 @@ class managecart(ListCreateAPIView):
         except:
               return Response('400 - Invalid data', status=status.HTTP_400_BAD_REQUEST)
 
-class managerdcart(RetrieveUpdateDestroyAPIView):
+class managerdcartrud(RetrieveUpdateDestroyAPIView):
+    serializer_class = Cartserializer
+    def get_queryset(self):
+        return Cart.objects.filter(user__id = self.request.user.id)
     def destroy(self, request,pk=None ,*args, **kwargs):
         cart = Cart.objects.get(pk=pk)
         cart.delete()
